@@ -191,14 +191,35 @@ This ensures that the partition is recognized with the correct size and availabl
 <img width="296" alt="dsd" src="https://github.com/user-attachments/assets/b9ef82a0-33fc-43ab-bde6-be154eb281a1">
 
 
-Completion Criteria
+# Summary: Partitioning, Formatting, and Configuring Filesystems on CentOS
 
-Successful Filesystem Creation: The new partition /dev/sdb1 was successfully created and formatted with the ext4 filesystem.
+Identify Available Storage Devices: Use lsblk to identify the new storage device (e.g., /dev/sdb).
 
-Correct Mounting: The filesystem was correctly mounted to /mnt/data.
+Select the Storage Device: Confirm /dev/sdb is the correct new disk.
 
-Automatic Mounting: The system was configured to automatically mount the filesystem at boot by updating /etc/fstab.
+Create Partitions: Use fdisk to create a single primary partition (/dev/sdb1).
 
-Verification: All configuration was verified by manually mounting, testing read/write operations, and confirming the mount point.
+Choose Filesystem Type: Select ext4 as the filesystem type.
 
-Testing: The filesystem passed basic tests to ensure data integrity and accessibility, fulfilling the criteria for a successful setup.
+Format the Partition: Format /dev/sdb1 with ext4 using sudo mkfs.ext4 /dev/sdb1.
+
+Advanced Configuration: No advanced configuration needed (e.g., encryption or compression).
+
+Mount the Filesystem: Create the mount point (/mnt/data) and mount the partition with sudo mount /dev/sdb1 /mnt/data.
+
+Automatic Mounting: Edit /etc/fstab to add:
+
+/dev/sdb1  /mnt/data  ext4  defaults  0  2
+This ensures automatic mounting at boot.
+
+Verify Configuration: Verify the filesystem is mounted and functioning properly with df -h.
+
+Test the Filesystem: Perform write/read tests and check disk usage to ensure data integrity and accessibility.
+
+This process successfully partitions, formats, mounts, and configures the new storage device, ensuring it is set up for automatic mounting and tested for proper functionality.
+
+
+
+
+
+
